@@ -1,30 +1,26 @@
 
 var minclude;
 
-(function() {
+(function () {
     "use strict";
 
     minclude = {
         tagname: 'hx:include',
         classprefix: 'minc_',
 
-        run: function() {
+        run: function () {
             this.process_tags();
         },
 
-        rawincludes: [],
         includes: {},
-        process_tags: function() {
-            this.rawincludes = document.getElementsByTagName(this.tagname);
-
-            let callback;
-
-            callback = this.set_content_async;
+        process_tags: function () {
+            const rawincludes = document.getElementsByTagName(this.tagname);
+            var callback = this.set_content_async;
 
             // Group tags
-            for (var i = 0; i < this.rawincludes.length; i++) {
-                const uri = this.rawincludes[i].getAttribute('src');
-                const entry = this.rawincludes[i].getAttribute('entry');
+            for (var i = 0; i < rawincludes.length; i++) {
+                const uri = rawincludes[i].getAttribute('src');
+                const entry = rawincludes[i].getAttribute('entry');
 
                 if (null != uri) {
                     if ((uri in this.includes) == false) {
@@ -35,8 +31,8 @@ var minclude;
                     }
 
                     const include = {
-                        'tag': this.rawincludes[i],
-                        'entry': this.rawincludes[i].getAttribute('entry')
+                        'tag': rawincludes[i],
+                        'entry': entry
                     };
 
                     this.includes[uri].includes.push(include);
@@ -104,21 +100,22 @@ var minclude;
 
                     let replaced = false;
 
-
-                    if (realGroup) {
-                        if (isJSON && entry in data && 'html' in data[entry]) {
-                            tag.innerHTML = data[entry].html;
-                            replaced = true;
-                        }
-                    } else {
-                        if (isJSON) {
-                            if ('html' in data) {
-                                tag.innerHTML = data['html'];
+                    if (req.status === 200 || req.status === 304) {
+                        if (realGroup) {
+                            if (isJSON && entry in data && 'html' in data[entry]) {
+                                tag.innerHTML = data[entry].html;
                                 replaced = true;
                             }
                         } else {
-                            tag.innerHTML = data;
-                            replaced = true;
+                            if (isJSON) {
+                                if ('html' in data) {
+                                    tag.innerHTML = data['html'];
+                                    replaced = true;
+                                }
+                            } else {
+                                tag.innerHTML = data;
+                                replaced = true;
+                            }
                         }
                     }
 
