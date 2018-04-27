@@ -126,6 +126,8 @@ var minclude;
 
                     // Set Status CSS Class
                     minclude.set_class(tag, req.status);
+
+                    minclude.trigger_event(tag);
                 }
             }
         },
@@ -149,6 +151,24 @@ var minclude;
             if (element.classList.contains(genericClass) === false) {
                 element.classList.add(genericClass);
                 element.classList.add(specificClass);
+            }
+        },
+
+
+
+        trigger_event: function (element) {
+            var event;
+
+            if (document.createEvent) {
+                event = document.createEvent("HTMLEvents");
+                event.initEvent("hinclude", true, true);
+                event.eventName = "hinclude";
+                element.dispatchEvent(event);
+            } else if (document.createEventObject) { // IE
+                event = document.createEventObject();
+                event.eventType = "hinclude";
+                event.eventName = "hinclude";
+                element.fireEvent("on" + event.eventType, event);
             }
         },
 
