@@ -1,7 +1,7 @@
 # minclude
 hinclude with merged request
 
-**! Work in progress, not ready yet for production use**
+Work in progress, some hinclude functionnalities might be missing.
 
 ## How to use
 
@@ -23,4 +23,12 @@ Then,
 <hx:include entry="profile" src="/api/user.json">
     <img src="default_picture.png" alt="Avatar" />
 </hx:include>
+```
+
+### Event
+
+```js
+document.getElementById('my-element').addEventListener('hinclude', function() {
+    // Do whatever you want when it's loaded, like removing a loading class
+});
 ```
