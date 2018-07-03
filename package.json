@@ -1,0 +1,34 @@
+{
+  "name": "minclude",
+  "version": "0.9.2",
+  "description": "Declarative client-side inclusion and optionaly grouped for the Web",
+  "main": "minclude.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvergne/minclude.git"
+  },
+  "dependencies": {
+    "eslint": "*"
+  },
+  "keywords": [
+    "hinclude",
+    "minclude",
+    "hxinclude"
+  ],
+  "author": "Christophe Vergne <christophe.vergne@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvergne/minclude/issues"
+  },
+  "homepage": "https://github.com/cvergne/minclude#readme",
+  "scripts": {
+    "test": "node node_modules/testcafe/bin/testcafe.js 'chrome:headless' tests/test.js",
+    "validate": "node node_modules/jslint/bin/jslint.js minclude.js"
+  },
+  "devDependencies": {
+    "testcafe": "^0.19.1"
+  }
+}
