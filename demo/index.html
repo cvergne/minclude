@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:hx="http://purl.org/NET/hinclude">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>minclude demo</title>
+</head>
+<body>
+    <h1>mInclude</h1>
+
+    <hx:include entry="title" src="./xhr.json">
+        <h2>Default title</h2>
+    </hx:include>
+
+    <hx:include src="./xhr.html">
+        <!-- No default content -->
+    </hx:include>
+
+    <hx:include id="ev" entry="content" src="./xhr.json">
+        <p>Default content</p>
+    </hx:include>
+
+    <hx:include src="./xhr3.json">
+        <p>Should not be replaced</p>
+    </hx:include>
+
+    <script type="text/javascript" src="../minclude.js" async defer></script>
+    <script>
+        document.getElementById('ev').addEventListener('hinclude', function(ev){
+            console.log('loaded !');
+        });
+    </script>
+</body>
+</html>

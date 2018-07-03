@@ -101,12 +101,10 @@ var minclude;
                     let replaced = false;
 
                     if (req.status === 200 || req.status === 304) {
-                        if (realGroup) {
-                            if (isJSON && entry in data && 'html' in data[entry]) {
-                                tag.innerHTML = data[entry].html;
-                                replaced = true;
-                            }
-                        } else {
+                        if (isJSON && entry in data && 'html' in data[entry]) {
+                            tag.innerHTML = data[entry].html;
+                            replaced = true;
+                        } else if (!realGroup) {
                             if (isJSON) {
                                 if ('html' in data) {
                                     tag.innerHTML = data['html'];

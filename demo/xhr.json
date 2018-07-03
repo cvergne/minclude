@@ -1,0 +1,8 @@
+{
+    "title": {
+        "html": "<h2>Replaced title</h2>"
+    },
+    "content": {
+        "html": "<p>Replaced content</p>"
+    }
+}
