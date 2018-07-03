@@ -125,7 +125,7 @@ var minclude;
                     // Set Status CSS Class
                     minclude.set_class(tag, req.status);
 
-                    minclude.trigger_event(tag);
+                    minclude.trigger_event(tag, data);
                 }
             }
         },
@@ -154,19 +154,14 @@ var minclude;
 
 
 
-        trigger_event: function (element) {
+        trigger_event: function (element, data) {
             var event;
 
             if (document.createEvent) {
-                event = document.createEvent("HTMLEvents");
-                event.initEvent("hinclude", true, true);
-                event.eventName = "hinclude";
+                event = document.createEvent('CustomEvent');
+                event.initCustomEvent('hinclude', true, true, {'data': data});
+                event.eventName = 'hinclude';
                 element.dispatchEvent(event);
-            } else if (document.createEventObject) { // IE
-                event = document.createEventObject();
-                event.eventType = "hinclude";
-                event.eventName = "hinclude";
-                element.fireEvent("on" + event.eventType, event);
             }
         },
 

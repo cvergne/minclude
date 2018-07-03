@@ -28,7 +28,8 @@ Then,
 ### Event
 
 ```js
-document.getElementById('my-element').addEventListener('hinclude', function() {
+document.getElementById('my-element').addEventListener('hinclude', function(ev) {
     // Do whatever you want when it's loaded, like removing a loading class
+    // Or manipulating XHR Response with `ev.detail.data`
 });
 ```

@@ -29,6 +29,8 @@
     <script>
         document.getElementById('ev').addEventListener('hinclude', function(ev){
             console.log('loaded !');
+            console.log('JSON Response:');
+            console.table(ev.detail.data);
         });
     </script>
 </body>
