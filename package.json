@@ -1,6 +1,6 @@
 {
   "name": "minclude",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Declarative client-side inclusion and optionaly grouped for the Web",
   "main": "minclude.js",
   "directories": {
