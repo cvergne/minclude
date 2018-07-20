@@ -14,13 +14,13 @@ var minclude;
 
         includes: {},
         process_tags: function () {
-            const rawincludes = document.getElementsByTagName(this.tagname);
+            var rawincludes = document.getElementsByTagName(this.tagname);
             var callback = this.set_content_async;
 
             // Group tags
             for (var i = 0; i < rawincludes.length; i++) {
-                const uri = rawincludes[i].getAttribute('src');
-                const entry = rawincludes[i].getAttribute('entry');
+                var uri = rawincludes[i].getAttribute('src');
+                var entry = rawincludes[i].getAttribute('entry');
 
                 if (null != uri) {
                     if ((uri in this.includes) == false) {
@@ -30,7 +30,7 @@ var minclude;
                         };
                     }
 
-                    const include = {
+                    var include = {
                         'tag': rawincludes[i],
                         'entry': entry
                     };
@@ -45,13 +45,13 @@ var minclude;
             }
 
             // Process groups
-            for (let uri in this.includes) {
+            for (var uri in this.includes) {
                 this.include(uri, this.includes[uri], callback);
             }
         },
 
         include: function(uri, group, incl_cb) {
-            let req;
+            var req;
 
             // Fetch content
             try {
@@ -76,11 +76,11 @@ var minclude;
         },
 
         set_content_async: function(group, req) {
-            const realGroup = (group.includes.length > 1);
+            var realGroup = (group.includes.length > 1);
 
             // Request done
             if (req.readyState && req.readyState == 4) {
-                let data   = req.responseText,
+                var data   = req.responseText,
                     isJSON = false;
 
                 // Try to JSON parse
@@ -93,12 +93,12 @@ var minclude;
                     }
                 }
 
-                for (let i = 0; i < group.includes.length; i++) {
-                    const item  = group.includes[i],
+                for (var i = 0; i < group.includes.length; i++) {
+                    var item  = group.includes[i],
                           entry = item.entry,
                           tag   = item.tag;
 
-                    let replaced = false;
+                    var replaced = false;
 
                     if (req.status === 200 || req.status === 304) {
                         if (isJSON && entry in data && 'html' in data[entry]) {
@@ -143,7 +143,7 @@ var minclude;
         },
 
         set_class: function (element, status) {
-            const genericClass  = this.classprefix + 'included',
+            var genericClass  = this.classprefix + 'included',
                   specificClass = this.classprefix + 'included_' + status
 
             if (element.classList.contains(genericClass) === false) {
